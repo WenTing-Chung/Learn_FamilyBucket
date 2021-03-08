@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title-jQuery,
+.title-Vue {
+  background-color: lightblue;
+  border-radius: 6px;
+  border: 2px solid blue;
+  text-align: center;
+}
