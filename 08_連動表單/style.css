@@ -1,0 +1,48 @@
+body {
+  box-sizing: border-box;
+  background-color: #41b784;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chooseList {
+  display: flex;
+  padding: 10px 20px;
+  margin-bottom: 50px;
+  background-color: #31515c;
+  border-radius: 10px;
+}
+.select-type,
+.select-list {
+  height: 40px;
+  border: none;
+  font-size: 24px;
+}
+.show {
+  display: flex;
+}
+.number,
+.name {
+  display: inline-block;
+  line-height: 1;
+}
+.number {
+  padding: 10px;
+  border-radius: 10px 0 0 10px;
+  background-color: #35485e;
+  color: #fff;
+}
+.name {
+  padding: 10px;
+  border-radius: 0 10px 10px 0;
+  background-color: #fff;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
