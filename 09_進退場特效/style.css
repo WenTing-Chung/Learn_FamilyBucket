@@ -1,0 +1,83 @@
+body {
+  background-color: #41b784;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.title {
+  text-align: center;
+}
+h1 {
+  background-color: #31515c;
+  border-radius: 6px;
+  text-align: center;
+  color: #fff;
+}
+.descripted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+  border-radius: 20px;
+}
+.number,
+.type,
+.link {
+  display: inline-block;
+  line-height: 1;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.number {
+  background-color: #31515c;
+  border-radius: 20px 0 0 20px;
+  color: #fff;
+}
+.type {
+  background-color: #ffec80;
+}
+.link {
+  background-color: #fff;
+  border-radius: 0 20px 20px 0;
+}
+.arrow {
+  position: absolute;
+  width: 100px;
+  cursor: pointer;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+/*
+  vue transition 進退場特效
+  xxx 可以自己取名稱
+  enter/ leave 進退場狀態
+  to/ active 發生時間點
+
+  xxx-(enter/ leave) 準備進場/ 退場
+  xxx-(enter/ leave)-active 正在進場/ 退場
+  xxx-(enter/ leave)-to 完成進場/ 退場
+  */
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}

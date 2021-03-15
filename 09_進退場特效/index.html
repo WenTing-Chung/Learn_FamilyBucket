@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Day9</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="title">
+          <img class="logo" :src="src" />
+          <h1>{{ title }}</h1>
+          <div class="descripted">
+            <a v-if="index > 0" class="arrow left" @click="changeHandle(-1)"
+              >◀</a
+            >
+            <!-- 使用 transition 指定要產生效果的部分, 屬性 appear 初始就有動畫 -->
+            <transition name="fade" mode="out-in" appear>
+              <div
+                v-if="index === i"
+                v-for="(item, i) of menu"
+                :key="item.title"
+                class="menuItem white"
+              >
+                <span class="number">{{ index + 1 }}</span>
+                <span class="type">{{ item.type }}</span>
+                <span class="link">
+                  <a :href="item.link">{{ item.title }}</a>
+                </span>
+              </div>
+            </transition>
+            <a v-if="index < 29" class="arrow right" @click="changeHandle(+1)"
+              >▶</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- vue CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let data = {
+        title: '進退場特效',
+        src: './Excited-shark.png',
+        index: 0,
+        menu: [
+          {
+            type: '主廚的話',
+            title: '餐點簡介與相關說明',
+            link: 'javascript;',
+          },
+          {
+            type: '餐具擺盤',
+            title: '萬用白瓷 VS Code 與套裝工具組',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '中式資料綁定佐無毒 jQuery 畫面處理',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '古早味事件燉畫面綁定',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '清爽表單處理佐雙向資料',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '使用者輸入焗列表呈現',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '期間限定篩選佐資料轉換',
+            link: 'javascript;',
+          },
+          {
+            type: '開胃餐點',
+            title: '峰峰相連互動式資料表單',
+            link: 'javascript;',
+          },
+          {
+            type: '風味沙拉',
+            title: '天然 CSS 過場佐 jQuery 動畫',
+            link: 'javascript;',
+          },
+          {
+            type: '風味沙拉',
+            title: '異國風情資料觀測與設定',
+            link: 'javascript;',
+          },
+          { type: '風味沙拉', title: '有機發酵生命週期', link: 'javascript;' },
+          {
+            type: '總匯拼盤',
+            title: '家鄉通訊錄佐手作 API #1',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '家鄉通訊錄佐手作 API #2',
+            link: 'javascript;',
+          },
+          {
+            type: '用餐插曲',
+            title: '怎麼沒有魯肉飯!? 其他菜色瀏覽',
+            link: 'javascript;',
+          },
+          {
+            type: '餐具擺盤',
+            title: '特製雕花 Vue-cli 3.0 與 Node.js 開發環境',
+            link: 'javascript;',
+          },
+          {
+            type: '主廚推薦',
+            title: '科學單檔模組化料理',
+            link: 'javascript;',
+          },
+          { type: '主廚推薦', title: '清燉嫩煮百頁路由', link: 'javascript;' },
+          { type: '主廚推薦', title: '蜂蜜燴巢狀路由', link: 'javascript;' },
+          {
+            type: '主廚推薦',
+            title: '五彩繽紛路由參數與監控',
+            link: 'javascript;',
+          },
+          {
+            type: '主廚推薦',
+            title: '共享式集中數據管理大雜燴',
+            link: 'javascript;',
+          },
+          { type: '主廚推薦', title: '精緻模組化數據塔', link: 'javascript;' },
+          {
+            type: '用餐插曲',
+            title: '我吃不下了!! 食用順序的選擇與進程',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '復古總匯 TodoList 燴路由模組',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '復古總匯 TodoList 燴資料模組',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '復古總匯 TodoList 燴頁面模組 #1',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '復古總匯 TodoList 燴頁面模組 #2',
+            link: 'javascript;',
+          },
+          {
+            type: '總匯拼盤',
+            title: '復古總匯 TodoList 燴頁面模組 #3',
+            link: 'javascript;',
+          },
+          {
+            type: '精選甜點',
+            title: '靜態渲染 VuePress 漸層飲',
+            link: 'javascript;',
+          },
+          {
+            type: '精選甜點',
+            title: '風情萬種 Nuxt.js 千層糕',
+            link: 'javascript;',
+          },
+          {
+            type: '主廚的話',
+            title: '餐後心得與其他資訊',
+            link: 'javascript;',
+          },
+        ],
+      }
+
+      let vm = new Vue({
+        el: '#app',
+        data: data,
+        computed: {
+          choose() {
+            return this.menu[this.index]
+          },
+        },
+        methods: {
+          // 利用餘數左右切換
+          changeHandle(change) {
+            this.index =
+              (this.index + change + this.menu.length) % this.menu.length
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
