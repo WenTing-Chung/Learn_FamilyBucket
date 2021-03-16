@@ -14,17 +14,10 @@
           <img class="logo" :src="src" />
           <h1>{{ title }}</h1>
           <div class="descripted">
-            <a v-if="index > 0" class="arrow left" @click="changeHandle(-1)"
-              >◀</a
-            >
+            <a v-if="index > 0" class="arrow left" @click="changeHandle(-1)">◀</a>
             <!-- 使用 transition 指定要產生效果的部分, 屬性 appear 初始就有動畫 -->
             <transition name="fade" mode="out-in" appear>
-              <div
-                v-if="index === i"
-                v-for="(item, i) of menu"
-                :key="item.title"
-                class="menuItem white"
-              >
+              <div v-if="index === i" v-for="(item, i) of menu" :key="item.title" class="menuItem white">
                 <span class="number">{{ index + 1 }}</span>
                 <span class="type">{{ item.type }}</span>
                 <span class="link">
@@ -32,9 +25,7 @@
                 </span>
               </div>
             </transition>
-            <a v-if="index < 29" class="arrow right" @click="changeHandle(+1)"
-              >▶</a
-            >
+            <a v-if="index < 29" class="arrow right" @click="changeHandle(+1)">▶</a>
           </div>
         </div>
       </div>
@@ -200,8 +191,7 @@
         methods: {
           // 利用餘數左右切換
           changeHandle(change) {
-            this.index =
-              (this.index + change + this.menu.length) % this.menu.length
+            this.index = (this.index + change + this.menu.length) % this.menu.length
           },
         },
       })

@@ -13,15 +13,11 @@
         <div class="chooseList">
           <select v-model="input.type" class="select-type" style="width: 30%">
             <option :value="null">請選擇</option>
-            <option v-for="item of typeList.sort" :key="item">
-              {{ item }}
-            </option>
+            <option v-for="item of typeList.sort" :key="item">{{ item }}</option>
           </select>
           <select v-model="input.title" class="select-list" style="width: 70%">
             <option :value="null">請選擇</option>
-            <option v-for="item of titleList.sort" :key="item">
-              {{ item }}
-            </option>
+            <option v-for="item of titleList.sort" :key="item">{{ item }}</option>
           </select>
         </div>
         <div v-if="container" class="show">

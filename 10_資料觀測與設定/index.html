@@ -15,20 +15,10 @@
             <div class="ball" @click="number++">{{ number }}</div>
             <div class="ball" @click="obj.num++">{{ obj.num }}</div>
             <div class="deseription">
-              <div
-                v-for="(item, index) of objList"
-                class="ball"
-                @click="objListHandler(index)"
-              >
-                {{ item.num }}
-              </div>
+              <div v-for="(item, index) of objList" class="ball" @click="objListHandler(index)">{{ item.num }}</div>
             </div>
             <div class="deseription">
-              <div
-                v-for="(number, index) of numberList"
-                class="ball"
-                @click="numberListHandler(index)"
-              >
+              <div v-for="(number, index) of numberList" class="ball" @click="numberListHandler(index)">
                 {{ number }}
               </div>
             </div>

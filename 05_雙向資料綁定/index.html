@@ -14,8 +14,7 @@
           <div>
             <div class="input">
               {{ name }}，{{ sex }}，年齡為 {{ age }}<br />
-              {{ favor.length ? '喜歡' : '' }}{{ favor.join('、')}}， {{ member
-              ? '已' : '未' }}成為會員
+              {{ favor.length ? '喜歡' : '' }}{{ favor.join('、')}}， {{ member ? '已' : '未' }}成為會員
             </div>
             <div class="menu">
               <table>
@@ -26,8 +25,7 @@
                 <tr>
                   <td>性別：</td>
                   <td>
-                    <input v-model="sex" type="radio" value="女" />女
-                    <input v-model="sex" type="radio" value="男" />男
+                    <input v-model="sex" type="radio" value="女" />女 <input v-model="sex" type="radio" value="男" />男
                   </td>
                 </tr>
                 <tr>
@@ -43,19 +41,9 @@
                 </tr>
                 <tr>
                   <td>興趣：</td>
-                  <td>
-                    <input v-model="favor" type="checkbox" value="打扣" />打扣
-                  </td>
-                  <td>
-                    <input v-model="favor" type="checkbox" value="電玩" />電玩
-                  </td>
-                  <td>
-                    <input
-                      v-model="favor"
-                      type="checkbox"
-                      value="遊日本"
-                    />遊日本
-                  </td>
+                  <td><input v-model="favor" type="checkbox" value="打扣" />打扣</td>
+                  <td><input v-model="favor" type="checkbox" value="電玩" />電玩</td>
+                  <td><input v-model="favor" type="checkbox" value="遊日本" />遊日本</td>
                 </tr>
                 <tr>
                   <td>訂閱：</td>

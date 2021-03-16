@@ -14,9 +14,7 @@
           <img class="logo" :src="src" />
           <h1>{{ title }}</h1>
           <div class="descripted">
-            <a v-if="index > 0" class="arrow left" @click="changeHandle(-1)"
-              >◀</a
-            >
+            <a v-if="index > 0" class="arrow left" @click="changeHandle(-1)">◀</a>
             <div class="menuItem white">
               <span class="number">{{ index + 1 }}</span>
               <span class="type">{{ choose.type }}</span>
@@ -24,9 +22,7 @@
                 <a :href="choose.link">{{ choose.title }}</a>
               </span>
             </div>
-            <a v-if="index < 29" class="arrow right" @click="changeHandle(+1)"
-              >▶</a
-            >
+            <a v-if="index < 29" class="arrow right" @click="changeHandle(+1)">▶</a>
           </div>
         </div>
       </div>
@@ -190,8 +186,7 @@
         methods: {
           // 利用餘數左右切換
           changeHandle(change) {
-            this.index =
-              (this.index + change + this.menu.length) % this.menu.length
+            this.index = (this.index + change + this.menu.length) % this.menu.length
           },
         },
       })
