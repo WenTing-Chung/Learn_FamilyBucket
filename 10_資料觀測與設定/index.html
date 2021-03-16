@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Day10</title>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <div class="container">
+          <div class="title">
+            <div class="ball" @click="number++">{{ number }}</div>
+            <div class="ball" @click="obj.num++">{{ obj.num }}</div>
+            <div class="deseription">
+              <div
+                v-for="(item, index) of objList"
+                class="ball"
+                @click="objListHandler(index)"
+              >
+                {{ item.num }}
+              </div>
+            </div>
+            <div class="deseription">
+              <div
+                v-for="(number, index) of numberList"
+                class="ball"
+                @click="numberListHandler(index)"
+              >
+                {{ number }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          obj: {
+            num: 0,
+          },
+          objList: [{ num: 0 }, { num: 0 }, { num: 0 }],
+          number: 0,
+          numberList: [0, 0, 0],
+        },
+        methods: {
+          objListHandler(index) {
+            this.objList[index].num++
+          },
+          numberListHandler(index) {
+            // 只會是數字, 不是經過 Vue 處理的 Observer, 不會立刻修改
+            // this.numberList[index]++
+
+            // this.$set(對誰, 對那裡, 修改什麼)
+            this.$set(this.numberList, index, this.numberList[index] + 1)
+          },
+        },
+        watch: {
+          number(val, oldVal) {
+            console.log('number: ', val, oldVal)
+          },
+          // 觀測 Object 單一參數, 淺檢查(只會第一層)
+          'obj.num'(val, oldVal) {
+            console.log('obj-single: ', val, oldVal)
+          },
+          // 觀測整個 Object, 使用 deep 深檢查
+          obj: {
+            handler(val) {
+              console.log('obj-all: ', val)
+            },
+            deep: true,
+          },
+          numberList(val, oldVal) {
+            console.log('numberList: ', val, oldVal)
+          },
+          objList: {
+            handler(val) {
+              console.log('objList: ', val)
+            },
+            deep: true,
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
