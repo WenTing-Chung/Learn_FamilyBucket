@@ -1,0 +1,88 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#app {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #41b784;
+}
+.title .input {
+  display: flex;
+  padding: 10px 5px;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  background-color: #31515c;
+}
+.input input {
+  padding: 0 10px;
+  height: 40px;
+  font-size: 18px;
+}
+.input .submit,
+.input .cancel {
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  background-color: #f9d35b;
+}
+.submit {
+  margin: 0 6px;
+}
+.menu {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+.menuItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.menuItem:last-child {
+  margin-bottom: 0;
+}
+.menuItem .number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #31515c;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+}
+.menuItem .type {
+  width: 20%;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  background-color: #f9d35b;
+}
+.menuItem .title {
+  width: 50%;
+  padding: 6px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+.menuItem .edit,
+.menuItem .del {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  line-height: 30px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.menuItem .edit {
+  background-color: #016302;
+}
+.menuItem .del {
+  background-color: #8d0105;
+}

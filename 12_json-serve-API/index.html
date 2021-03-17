@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Day12,13</title>
+  </head>
+  <body>
+    <div id="app">
+      <section v-if="loading">Loading...</section>
+      <section v-else>
+        <div class="container">
+          <div class="title">
+            <div class="input">
+              <input v-model.trim="input.name" type="text" placeholder="會員名稱" />
+              <input v-model.trim="input.email" type="text" placeholder="電子信箱" />
+              <button class="submit" @click="submitHandler">送出</button>
+              <button class="cancel" @click="cancelHandler">取消</button>
+            </div>
+            <div class="menu">
+              <div class="menuItem" v-for="(item, index) of contacts" :key="item.id">
+                <span class="number">{{ index + 1 }}</span>
+                <span class="type">{{ item.name }}</span>
+                <a :href="'mailto:'+item.email" target="vue-iron" class="title">{{ item.email }}</a>
+                <span class="edit" @click="editHandler(index)">修改</span>
+                <span class="del" @click="deleteHandler(index)">刪除</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Vue CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"
+      integrity="sha512-PyKhbAWS+VlTWXjk/36s5hJmUJBxcGY/1hlxg6woHD/EONP2fawZRKmvHdTGOWPKTqk3CPSUPh7+2boIBklbvw=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- axios CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.9.0/axios.js"
+      integrity="sha512-gtrgGxYyr6TohDyExCZHZ2GQdH+IKY+XWoe+GOEfr88z1U0h+SRaWbUzNm3HhDAL2d8Eu3lFHG/u70e1ODSazA=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      ;(function (Vue) {
+        new Vue({
+          el: '#app',
+          data: {
+            loading: false,
+            editIndex: null,
+            contacts: [],
+            input: {
+              name: '',
+              email: '',
+            },
+          },
+          mounted() {
+            this.loading = true
+            axios
+              .get('http://localhost:3000/contacts')
+              .then((res) => {
+                this.contacts = res.data
+                this.loading = false
+                console.log(res)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          },
+          methods: {
+            // 送出
+            submitHandler() {
+              const { name, email } = this.input
+              if (!name || !email) return
+              this.loading = true
+              if (this.editIndex === null) {
+                axios
+                  .post('http://localhost:3000/contacts', this.input)
+                  .then((res) => {
+                    this.contacts.push(res.data)
+                    this.loading = false
+                    this.cancelHandler()
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              } else {
+                const id = this.contacts[this.editIndex].id
+                axios
+                  .put(`http://localhost:3000/contacts/${id}`, this.input)
+                  .then((res) => {
+                    this.loading = false
+                    this.contacts[this.editIndex] = res.data
+                    this.cancelHandler()
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              }
+            },
+            // 取消
+            cancelHandler() {
+              this.editIndex = null
+              this.input = {
+                name: '',
+                email: '',
+              }
+            },
+            // 刪除
+            deleteHandler(index) {
+              const { name, email, id } = this.contacts[index]
+              if (confirm(`是否刪除 ${name} ?`)) {
+                this.loading = true
+                axios
+                  .delete(`http://localhost:3000/contacts/${id}`)
+                  .then((res) => {
+                    this.loading = false
+                    this.contacts.splice(index, 1)
+                    this.cancelHandler()
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              }
+            },
+            // 修改
+            editHandler(index) {
+              const { name, email } = this.contacts[index]
+              this.input = { name, email }
+              this.editIndex = index
+            },
+          },
+        })
+      })(Vue)
+    </script>
+  </body>
+</html>

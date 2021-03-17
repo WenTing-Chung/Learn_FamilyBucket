@@ -1,0 +1,13 @@
+{
+  "name": "12_json-serve-api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "json": "json-server --watch db.json --port 3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}
