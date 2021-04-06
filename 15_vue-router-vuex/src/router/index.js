@@ -57,23 +57,23 @@ const routes = [
     ]
   },
   {
-    path: '/vuextest',
-    redirect: '/vuextest/1'
+    path: '/vuexstart',
+    redirect: '/vuexstart/1'
   },
   {
-    path: '/vuextest/:day',
-    name: 'VuexTest',
-    component: () => import('@/views/VuexTest.vue')
-  },
-  {
-    path: '/storemodule',
-    redirect: '/storemodule/1'
-  },
-  {
-    path: '/storemodule/:day',
-    name: 'StoreModule',
-    component: () => import('@/views/StoreModule.vue')
+    path: '/vuexstart/:day',
+    name: 'VuexStart',
+    component: () => import('@/views/Vuex/VuexStart.vue')
   }
+  // {
+  //   path: '/storemodule',
+  //   redirect: '/storemodule/1'
+  // },
+  // {
+  //   path: '/storemodule/:day',
+  //   name: 'StoreModule',
+  //   component: () => import('@/views/StoreModule.vue')
+  // }
 ]
 
 const router = new VueRouter({

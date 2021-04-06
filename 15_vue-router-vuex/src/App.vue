@@ -4,8 +4,8 @@
       <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
       <router-link to="/test">Test</router-link> |
       <router-link :to="{ name: 'RouterType' }">RouterType</router-link> |
-      <!-- <router-link :to="{ name: 'VuexTest', params: { day: 1 } }">Vuex</router-link> -->
-      <router-link :to="{ name: 'StoreModule', params: { day: 1 } }">Iron</router-link>
+      <router-link to="/vuexstart">VuexStart</router-link> |
+      <!-- <router-link :to="{ name: 'StoreModule', params: { day: 1 } }">Iron</router-link> -->
     </div>
     <router-view />
   </div>
