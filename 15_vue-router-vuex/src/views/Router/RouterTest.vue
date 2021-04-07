@@ -2,10 +2,10 @@
   <div>
     <h1>{{ text }}</h1>
     <div style="margin-bottom: 20px">
-      <router-link to="testinfo">
+      <router-link to="/testinfo">
         <button type="button">TestInfo</button>
       </router-link>
-      <router-link to="fgovideo">
+      <router-link to="/fgovideo">
         <button type="button">FGO Video</button>
       </router-link>
     </div>
@@ -15,9 +15,9 @@
 
 <script>
 export default {
-  name: 'Test',
+  name: 'RouterTest',
   data: () => ({
-    text: 'Hello World',
+    text: 'Router Test',
   }),
 }
 </script>

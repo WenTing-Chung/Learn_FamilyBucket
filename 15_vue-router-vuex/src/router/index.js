@@ -19,31 +19,31 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: () => import('@/views/Test/Test.vue'),
+    path: '/routertest',
+    name: 'RouterTest',
+    component: () => import('@/views/Router/RouterTest.vue'),
     children: [
       {
-        path: '/testinfo',
-        name: 'TestInfo',
-        component: () => import('@/views/Test/TestInfo.vue')
+        path: '/first',
+        name: 'RouterFirst',
+        component: () => import('@/views/Router/First.vue')
       },
       {
-        path: '/fgovideo',
-        name: 'FGOVideo',
-        component: () => import('@/views/Test/FGOVideo.vue')
+        path: '/second',
+        name: 'RouterSecond',
+        component: () => import('@/views/Router/Second.vue')
       }
     ]
   },
   {
     path: '/routertype',
     name: 'RouterType',
-    component: () => import('@/views/Type/RouterType.vue'),
+    component: () => import('@/views/RouterType/RouterType.vue'),
     children: [
       {
         path: '/typequery',
         name: 'TypeQuery',
-        component: () => import('@/views/Type/TypeQuery.vue')
+        component: () => import('@/views/RouterType/TypeQuery.vue')
       },
       {
         path: '/typeparams',
@@ -52,7 +52,7 @@ const routes = [
       {
         path: '/typeparams/:iamparams',
         name: 'TypeParams',
-        component: () => import('@/views/Type/TypeParams.vue')
+        component: () => import('@/views/RouterType/TypeParams.vue')
       }
     ]
   },
@@ -64,16 +64,16 @@ const routes = [
     path: '/vuexstart/:day',
     name: 'VuexStart',
     component: () => import('@/views/Vuex/VuexStart.vue')
+  },
+  {
+    path: '/vuexmodule',
+    redirect: '/vuexmodule/1'
+  },
+  {
+    path: '/vuexmodule/:day',
+    name: 'VuexModule',
+    component: () => import('@/views/Vuex/VuexModule.vue')
   }
-  // {
-  //   path: '/storemodule',
-  //   redirect: '/storemodule/1'
-  // },
-  // {
-  //   path: '/storemodule/:day',
-  //   name: 'StoreModule',
-  //   component: () => import('@/views/StoreModule.vue')
-  // }
 ]
 
 const router = new VueRouter({

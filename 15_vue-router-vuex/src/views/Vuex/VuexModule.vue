@@ -2,15 +2,17 @@
   <section class="vuetest">
     <div class="container">
       <div class="title">
-        <img class="logo" :src="header.src" />
-        <h1>{{ header.title }}</h1>
-        <div class="descripted" v-if="list.length">
+        <div v-if="header">
+          <img class="logo" :src="header.src" />
+          <h1>{{ header.title }}</h1>
+        </div>
+        <div class="descripted" v-if="currencyDate">
           <a v-if="day > 0" class="arrow left" @click="clickHandle(-1)">◀</a>
           <div class="menuItem white">
             <span class="number">{{ day + 1 }}</span>
-            <span class="type">{{ list[day].type }}</span>
+            <span class="type">{{ currencyDate.type }}</span>
             <span class="link">
-              <a :href="list[day].link">{{ list[day].title }}</a>
+              <a :href="currencyDate.link">{{ currencyDate.title }}</a>
             </span>
           </div>
           <a v-if="day < 29" class="arrow right" @click="clickHandle(+1)">▶</a>
@@ -21,10 +23,12 @@
 </template>
 
 <script>
+import StoreModule from '@/store/storemodule.js'
 export default {
   name: 'VuexStart',
   watch: {
     $route() {
+      console.log(to, from)
       let day = parseInt(this.$route.params.day) - 1
       this.day = day
     },
@@ -32,25 +36,26 @@ export default {
   computed: {
     day: {
       get() {
-        return this.$store.state.day
+        return this.$store.state.module ? this.$store.state.module.day : 0
       },
       set(val) {
         // this.$store.state.day = val
-        this.$store.commit('SETDAY', val) // 直接修改state
+        this.$store.commit('module/SETDAY', val) // 直接修改state
       },
     },
     header() {
-      return this.$store.state.header
+      return this.$store.state.module ? this.$store.state.module.header : null
     },
-    list() {
-      return this.$store.state.list
+    currencyDate() {
+      return this.$store.state.module ? this.$store.getters['module/currencyDate'] : null
     },
   },
   mounted() {
     let first = parseInt(this.$route.params.day) - 1
     document.addEventListener('keyup', this.changeHandle)
     // this.day = first (存本地)
-    this.$store.dispatch('GETLIST', first) // (存store) 使用dispatch操作store的actions
+    this.$store.registerModule('module', StoreModule)
+    this.$store.dispatch('module/GETLIST', first) // (存store) 使用dispatch操作store的actions
   },
   methods: {
     changeHandle(e) {
@@ -61,11 +66,11 @@ export default {
       this.$router.replace({
         params: { day: day + 1 },
       })
-      // 網址隨時更動
+      // 網址取代
     },
     clickHandle(num) {
       let day = this.day
-      day = (day + num + this.list.length) % this.list.length
+      day += num
       this.$router.replace({
         params: { day: day + 1 },
       })
@@ -73,6 +78,7 @@ export default {
   },
   // 自己註冊/ 執行的事件, 要自己關掉
   beforeDestroy() {
+    this.$store.unregisterModule('module')
     document.removeEventListener('keyup', this.changeHandle)
   },
 }
