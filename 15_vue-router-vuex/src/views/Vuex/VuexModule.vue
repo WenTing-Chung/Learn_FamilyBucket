@@ -25,7 +25,7 @@
 <script>
 import StoreModule from '@/store/storemodule.js'
 export default {
-  name: 'VuexStart',
+  name: 'VuexModule',
   watch: {
     $route() {
       console.log(to, from)
@@ -62,7 +62,7 @@ export default {
       let day = this.day
       if (e.keyCode === 39) day = day < 29 ? day + 1 : day
       else if (e.keyCode === 37) day = day > 0 ? day - 1 : day
-      // this.day = day (本地資料會固定)
+      // this.day = day (不會更新路由)
       this.$router.replace({
         params: { day: day + 1 },
       })
