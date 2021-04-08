@@ -1,0 +1,25 @@
+body {
+  background-color: #42b983;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+  color: #fff;
+}
+#nav a {
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+#nav a.router-link-exact-active {
+  color: #2c3e50;
+  background-color: #fff;
+}
