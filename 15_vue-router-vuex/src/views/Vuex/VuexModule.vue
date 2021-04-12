@@ -23,15 +23,15 @@
 </template>
 
 <script>
-import StoreModule from '@/store/storemodule.js'
+import StoreModule from '@/store/storemodule.js' // 引入個別store 檔案
 export default {
   name: 'VuexModule',
-  watch: {
-    $route() {
-      console.log(to, from)
-      let day = parseInt(this.$route.params.day) - 1
-      this.day = day
-    },
+  mounted() {
+    let first = parseInt(this.$route.params.day) - 1
+    document.addEventListener('keyup', this.changeHandle)
+    // this.day = first (存本地)
+    this.$store.registerModule('module', StoreModule) // 註冊個別store
+    this.$store.dispatch('module/GETLIST', first) // (存store) 使用dispatch 操作store 的actions
   },
   computed: {
     day: {
@@ -50,12 +50,11 @@ export default {
       return this.$store.state.module ? this.$store.getters['module/currencyDate'] : null
     },
   },
-  mounted() {
-    let first = parseInt(this.$route.params.day) - 1
-    document.addEventListener('keyup', this.changeHandle)
-    // this.day = first (存本地)
-    this.$store.registerModule('module', StoreModule)
-    this.$store.dispatch('module/GETLIST', first) // (存store) 使用dispatch操作store的actions
+  watch: {
+    $route() {
+      let day = parseInt(this.$route.params.day) - 1
+      this.day = day
+    },
   },
   methods: {
     changeHandle(e) {
