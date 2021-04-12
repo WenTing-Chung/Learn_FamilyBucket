@@ -29,12 +29,12 @@ const filter = {
 }
 
 export default new Vuex.Store({
-  strict: true, // 避免直接修改 state
+  strict: true, // 嚴格模式, 不是由mutations 更新state 會產生錯誤
   state: {
     todos: [
-      { content: 'todo-content', complete: false },
-      { content: 'todo-content', complete: false },
-      { content: 'todo-content', complete: true },
+      { content: 'todo-content-1', complete: false },
+      { content: 'todo-content-2', complete: false },
+      { content: 'todo-content-3', complete: true },
     ],
   },
   getters: {
@@ -68,7 +68,7 @@ export default new Vuex.Store({
   },
   actions: {
     INIT_TODO({ commit }) {
-      // load LocalStorage (讀取LocalStorage資料)
+      // load LocalStorage (讀取LocalStorage 資料)
       commit('SET_TODO', LS.load())
     },
   },
